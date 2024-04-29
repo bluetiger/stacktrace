@@ -2,9 +2,10 @@ package stacktrace
 
 import (
 	"errors"
+	"fmt"
 	"testing"
 )
 
 func Test_main(t *testing.T) {
-	Trace(errors.New("test_err"))
+	fmt.Println(StackTrace(errors.New("test_err")).Error())
 }
