@@ -22,12 +22,14 @@ func (s *StackErrors) Error() string {
 }
 
 func StackTrace(err error) error {
+	if err == nil {
+		return nil
+	}
 	var (
-		pc [100]uintptr
+		ptr [100]uintptr
 	)
-
 	return &StackErrors{
-		frame:     runtime.CallersFrames(pc[:runtime.Callers(1, pc[:])]),
+		frame:     runtime.CallersFrames(ptr[:runtime.Callers(1, ptr[:])]),
 		baseError: err,
 	}
 }
